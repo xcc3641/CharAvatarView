@@ -16,12 +16,14 @@ mAvatarView.setText("谢三弟");
 
 3.Easy to use , last you will see
 
-![](http://ww2.sinaimg.cn/large/801b780agw1f7tf8ejh2cj20y81headq.jpg)
+<img src="http://ww2.sinaimg.cn/large/801b780agw1f7tf8ejh2cj20y81headq.jpg" width="30%" height="30%">
+
 
 
 ### Contact Me
 
 Email: hugo3641@gmail.com
+
 More about me in my blog: [imxie.cc](http://imxie.cc)
 
 ### License
