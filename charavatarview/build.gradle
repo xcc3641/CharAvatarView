@@ -32,7 +32,7 @@ def gitUrl = 'https://github.com/xcc3641/CharAvatarView.git'
 // Git 仓库的 url
 // Maven Group ID for the artifact，填你唯一的groupid，
 // 强烈建议填写`com.github.yourusername`,其中 yourusername 为你 github 用户名
-group = "com.github.xcc3641.charavatarview"
+group = "com.github.xcc3641"
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -90,7 +90,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "CharAvatarView"    //发布到JCenter上的项目名字
+        name = "charavatarview"    //发布到JCenter上的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
