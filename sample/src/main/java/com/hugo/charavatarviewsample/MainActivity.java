@@ -13,7 +13,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String url = "https://avatars2.githubusercontent.com/u/11666634?v=3&s=466";
         mAvatarView = (CharAvatarView) findViewById(R.id.avatar);
         mAvatarView.setText("谢三弟");
+        //Glide.with(this).load(url).into(mAvatarView);
+
     }
 }

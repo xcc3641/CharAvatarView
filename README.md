@@ -5,6 +5,7 @@ This is a custom imageview to create avatar with first char in username.
 ### Usage
 
 1. Add the dependencies to your build.gradle file, CharAvatarView is avaiable in JCenter:
+
 ```gradle
 compile 'com.github.xcc3641:charavatarview:0.1'
 ```

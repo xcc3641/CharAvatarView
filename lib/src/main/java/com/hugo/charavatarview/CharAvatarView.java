@@ -13,7 +13,7 @@ import android.widget.ImageView;
  *
  * Email: Hugo3641@gmail.com
  * GitHub: https://github.com/xcc3641
- * Info: 给没有图片的头像根据用户名随机生成头像
+ * Info: 根据用户名随机生成头像
  */
 public class CharAvatarView extends ImageView {
     private static final String TAG = CharAvatarView.class.getSimpleName();
@@ -42,6 +42,10 @@ public class CharAvatarView extends ImageView {
         super(context, attrs);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mRect = new Rect();
+    }
+
+    public CharAvatarView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override
