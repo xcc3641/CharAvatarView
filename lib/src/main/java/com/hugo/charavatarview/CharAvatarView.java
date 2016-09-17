@@ -18,16 +18,16 @@ import android.widget.ImageView;
 public class CharAvatarView extends ImageView {
     private static final String TAG = CharAvatarView.class.getSimpleName();
     // 颜色画板集
-    private static final String[] colors = {
-        "#1abc9c", "#16a085", "#f1c40f", "#f39c12", "#2ecc71",
-        "#27ae60", "#e67e22", "#d35400", "#3498db", "#2980b9",
-        "#e74c3c", "#c0392b", "#9b59b6", "#8e44ad", "#bdc3c7",
-        "#34495e", "#2c3e50", "#95a5a6", "#7f8c8d", "#ec87bf",
-        "#d870ad", "#f69785", "#9ba37e", "#b49255", "#b49255", "#a94136"
+    private static final int[] colors = {
+        0xFF1abc9c, 0xFF16a085, 0xFFf1c40f, 0xFFf39c12, 0xFF2ecc71,
+        0xFF27ae60, 0xFFe67e22, 0xFFd35400, 0xFF3498db, 0xFF2980b9,
+        0xFFe74c3c, 0xFFc0392b, 0xFF9b59b6, 0xFF8e44ad, 0xFFbdc3c7,
+        0xFF34495e, 0xFF2c3e50, 0xFF95a5a6, 0xFF7f8c8d, 0xFFec87bf,
+        0xFFd870ad, 0xFFf69785, 0xFF9ba37e, 0xFFb49255, 0xFFb49255, 0xFFa94136
     };
 
-    private Paint mPaint;
-
+    private Paint mPaintBackground;
+    private Paint mPaintText;
     private Rect mRect;
 
     private String text;
@@ -35,17 +35,22 @@ public class CharAvatarView extends ImageView {
     private int charHash;
 
     public CharAvatarView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public CharAvatarView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mRect = new Rect();
+        this(context, attrs, 0);
     }
 
     public CharAvatarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        mPaintBackground = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaintText = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mRect = new Rect();
     }
 
     @Override
@@ -62,21 +67,21 @@ public class CharAvatarView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (null != text) {
-            int color = Color.parseColor(colors[charHash % colors.length]);
+            int color = colors[charHash % colors.length];
             // 画圆
-            mPaint.setColor(color);
-            canvas.drawCircle(getWidth() / 2, getWidth() / 2, getWidth() / 2, mPaint);
+            mPaintBackground.setColor(color);
+            canvas.drawCircle(getWidth() / 2, getWidth() / 2, getWidth() / 2, mPaintBackground);
             // 写字
-            mPaint.setColor(Color.WHITE);
-            mPaint.setTextSize(getWidth() / 2);
-            mPaint.setStrokeWidth(3);
-            mPaint.getTextBounds(text, 0, 1, mRect);
+            mPaintText.setColor(Color.WHITE);
+            mPaintText.setTextSize(getWidth() / 2);
+            mPaintText.setStrokeWidth(3);
+            mPaintText.getTextBounds(text, 0, 1, mRect);
             // 垂直居中
-            Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
+            Paint.FontMetricsInt fontMetrics = mPaintText.getFontMetricsInt();
             int baseline = (getMeasuredHeight() - fontMetrics.bottom - fontMetrics.top) / 2;
             // 左右居中
-            mPaint.setTextAlign(Paint.Align.CENTER);
-            canvas.drawText(text, getWidth() / 2, baseline, mPaint);
+            mPaintText.setTextAlign(Paint.Align.CENTER);
+            canvas.drawText(text, getWidth() / 2, baseline, mPaintText);
         }
     }
 
@@ -85,12 +90,14 @@ public class CharAvatarView extends ImageView {
      * 只会取内容的第一个字符,如果是字母转换成大写
      */
     public void setText(String content) {
+        if (content == null) {
+            throw new NullPointerException("字符串内容不能为空");
+        }
         this.text = String.valueOf(content.toCharArray()[0]);
         this.text = text.toUpperCase();
         charHash = this.text.hashCode();
+        // 重绘
+        invalidate();
     }
 
-    public Paint getPaint() {
-        return mPaint;
-    }
 }
