@@ -19,12 +19,13 @@ public class CharAvatarView extends ImageView {
     private static final String TAG = CharAvatarView.class.getSimpleName();
     // 颜色画板集
     private static final int[] colors = {
-        0xFF1abc9c, 0xFF16a085, 0xFFf1c40f, 0xFFf39c12, 0xFF2ecc71,
-        0xFF27ae60, 0xFFe67e22, 0xFFd35400, 0xFF3498db, 0xFF2980b9,
-        0xFFe74c3c, 0xFFc0392b, 0xFF9b59b6, 0xFF8e44ad, 0xFFbdc3c7,
-        0xFF34495e, 0xFF2c3e50, 0xFF95a5a6, 0xFF7f8c8d, 0xFFec87bf,
-        0xFFd870ad, 0xFFf69785, 0xFF9ba37e, 0xFFb49255, 0xFFb49255, 0xFFa94136
+        0xff1abc9c, 0xff16a085, 0xfff1c40f, 0xfff39c12, 0xff2ecc71,
+        0xff27ae60, 0xffe67e22, 0xffd35400, 0xff3498db, 0xff2980b9,
+        0xffe74c3c, 0xffc0392b, 0xff9b59b6, 0xff8e44ad, 0xffbdc3c7,
+        0xff34495e, 0xff2c3e50, 0xff95a5a6, 0xff7f8c8d, 0xffec87bf,
+        0xffd870ad, 0xfff69785, 0xff9ba37e, 0xffb49255, 0xffb49255, 0xffa94136
     };
+
 
     private Paint mPaintBackground;
     private Paint mPaintText;
@@ -91,7 +92,7 @@ public class CharAvatarView extends ImageView {
      */
     public void setText(String content) {
         if (content == null) {
-            throw new NullPointerException("字符串内容不能为空");
+            content=" ";
         }
         this.text = String.valueOf(content.toCharArray()[0]);
         this.text = text.toUpperCase();
